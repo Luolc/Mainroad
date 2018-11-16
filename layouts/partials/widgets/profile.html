@@ -1,0 +1,16 @@
+<div class="widget-profile widget">
+	<h4 class="widget__title">{{ T "profile_title" }}</h4>
+	<div class="widget__content">
+		<div class="profile__container">
+			<a class="profile__avatar" href="{{ .Site.Author.avatar }}" style="background-image: url('{{ .Site.Author.avatar }}')"></a>
+		</div>
+		<div class="profile__name">
+			<div style="font-size: 1.25rem">
+				<b>{{ .Site.Author.name }}</b><span style="font-family: STFangsong"> ({{ .Site.Author.chinese_name }})</span>
+			</div>
+			<div>
+				Undergrad @ Peking University
+			</div>
+		</div>
+	</div>
+</div>

@@ -8,7 +8,10 @@
 		{{- range sort .Site.Menus.main }}
 		{{- if .Name}}
 		<li class="menu__item{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} menu__item--active{{end}}">
-			<a class="menu__link" href="{{ .URL }}">{{ .Name }}</a>
+			{{- $url := .URL }}
+			<!-- workaround for unexpected lowercase -->
+			{{- if eq .Name "Curriculum Vitae" }}{{- $url = $.Site.Params.cv.url }}{{- end }}
+			<a class="menu__link" href="{{ $url }}">{{ .Name }}</a>
 		</li>
 		{{- end }}
 		{{- end }}

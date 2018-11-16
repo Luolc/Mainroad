@@ -2,11 +2,29 @@
 <div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">{{ T "social_title" }}</h4>
 	<div class="widget-social__content widget__content">
-		{{- with .Site.Params.widgets.social.facebook }}
+		{{- with .Site.Params.widgets.social.email }}
 		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="Facebook" rel="noopener noreferrer" href="https://facebook.com/{{ . }}" target="_blank">
-				<svg class="widget-social__link-icon icon-facebook" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="m0 32v288c0 17.5 14.5 32 32 32h288c17.5 0 32-14.5 32-32v-288c0-17.5-14.5-32-32-32h-288c-17.5 0-32 14.5-32 32zm320 0v288h-83v-108h41.5l6-48h-47.5v-31c0-14 3.5-23.5 23.5-23.5h26v-43.5c-4.4-.6-19.8-1.5-37.5-1.5-36.9 0-62 22.2-62 63.5v36h-42v48h42v108h-155v-288z"/></svg>
-				<span>Facebook</span>
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:{{ . }}">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>{{ . }}</span>
+			</a>
+		</div>
+		{{- end }}
+		{{- with .Site.Params.widgets.social.google_scholar }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Google Scholar" href="https://scholar.google.com/citations?user={{ . }}=en-US">
+				<svg class="widget-social__link-icon icon-mail" viewBox="128 128 820 768" width="24" height="24" fill="#fff">
+					<path d="M554.5 616.2c-3.9-0.5-9.9-0.7-18-0.7-13 0-25.8 0.9-38.5 2.6-12.6 1.7-25.8 4.8-39.4 9.2-13.6 4.4-25.5 10.1-35.7 16.9-10.2 6.9-18.6 16-25.2 27.4-6.6 11.4-9.9 24.4-9.9 38.8 0 13.7 2.9 26.3 8.6 37.5 5.8 11.3 13.3 20.6 22.5 27.8 9.2 7.2 19.9 13.4 32 18.4 12.1 5 24.4 8.6 36.8 10.7 12.4 2.1 24.8 3.1 37.4 3.1 14.2 0 27.9-1.6 41-4.8 13.1-3.2 25.3-8 36.4-14.4 11.2-6.4 20.1-15.3 26.9-26.9 6.7-11.5 10.1-24.9 10.1-40.1 0-6.1-0.9-12.1-2.6-18-1.7-5.9-3.5-11-5.3-15.5-1.8-4.4-5.2-9.5-9.9-15.3-4.8-5.8-8.4-10.1-10.9-12.9-2.5-2.8-7.2-7.1-14.2-12.7-7-5.6-11.5-9.2-13.4-10.7-2-1.5-7.1-5.2-15.3-11-8.2-5.8-12.7-9-13.4-9.4zM572.5 312.3c-7.6-15.3-17.9-28-30.9-38.1-13-10.1-27.4-15.1-43.1-15.1-10.3 0-20.4 2.4-30.4 7.2-9.9 4.8-18.1 11.2-24.5 19.3-11.3 14.5-16.9 34.1-16.9 58.9 0 11.3 1.2 23.2 3.7 35.9 2.5 12.6 6.3 25.3 11.6 37.9 5.3 12.6 11.7 24 19.1 34 7.5 10.1 16.7 18.3 27.6 24.7s22.8 9.6 35.5 9.6c9.1 0 18.6-2 28.5-6.1 9.9-4 18-9.4 24.1-16 13-13.7 19.5-33.2 19.5-58.5 0-14.5-2.1-29.9-6.3-46.2-4-16.3-9.9-32.1-17.5-47.5z" /><path d="M814.1 136.4H208c-44 0-80 36-80 80v612.9c0 44 36 80 80 80h606.1c44 0 80-36 80-80V216.4c0-44-36-80-80-80z m-41.8 71.1s-18.7 22.8 4.2 64.4c0 0 4.2 13.1 3.5 21.5 0 0-7.5 39.4 0.1 74 0 0 8.9 108.7 0.5 127.3 0 0-3.4 24.9-27.6 20.1 0 0-22.1 0-21.5-42.2 0 0-2.8-28.4 0-82.4 0 0 4.2-42.9 2.8-69.9 0 0-4.2-33.2 1.4-45 0 0 13.8-18.7 11.1-47.1l-0.5-1.9-98.7 77.4c1.3 2.2 2.6 4.3 3.8 6.5 9.3 17.2 14 36.8 14 58.9 0 17.7-3 33.6-9 47.7-6 14.1-13.3 25.5-21.9 34.2-8.6 8.7-17.1 16.7-25.6 23.9-8.5 7.2-15.7 14.8-21.7 22.6-6 7.9-9 15.9-9 24.3 0 8.8 3.9 17.5 11.8 25.9 7.9 8.5 17.3 16.8 28.3 25s22.1 17.2 33.3 27.1c11.2 9.8 20.7 22.6 28.5 38.3 7.9 15.7 11.8 33.1 11.8 52.3 0 22.3-6 43.6-18 63.7-17.4 29.9-43.1 52-77.1 66.1-34 14.1-70.6 21.2-109.9 21.2-32.4 0-62.6-5.1-90.7-15.3-28.1-10.2-49.3-27.1-63.5-50.6-8.8-14.5-13.3-30.5-13.3-48.2 0-19.9 5.5-38.3 16.4-55.2 10.9-16.9 25.5-31 43.6-42.3 32-20.1 81.6-32.4 148.6-36.8-7.9-10.1-13.7-19.1-17.5-27.1-3.8-8-5.7-17-5.7-27.1 0-9.8 2.6-20.2 7.7-31.3-11.3 1-19.6 1.5-25 1.5-36.3 0-66.9-11.8-91.8-35.5-24.9-23.7-37.4-53.7-37.4-90 0-4.3 0.2-8.5 0.6-12.7H220L437.3 182.6H802l-31.4 24.6 1.7 0.3z" />
+				</svg>
+				<span>Google Scholar</span>
+			</a>
+		</div>
+		{{- end }}
+		{{- with .Site.Params.widgets.social.github }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/{{ . }}" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
 			</a>
 		</div>
 		{{- end }}
@@ -26,19 +44,19 @@
 			</a>
 		</div>
 		{{- end }}
+		{{- with .Site.Params.widgets.social.facebook }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Facebook" rel="noopener noreferrer" href="https://facebook.com/{{ . }}" target="_blank">
+				<svg class="widget-social__link-icon icon-facebook" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="m0 32v288c0 17.5 14.5 32 32 32h288c17.5 0 32-14.5 32-32v-288c0-17.5-14.5-32-32-32h-288c-17.5 0-32 14.5-32 32zm320 0v288h-83v-108h41.5l6-48h-47.5v-31c0-14 3.5-23.5 23.5-23.5h26v-43.5c-4.4-.6-19.8-1.5-37.5-1.5-36.9 0-62 22.2-62 63.5v36h-42v48h42v108h-155v-288z"/></svg>
+				<span>Facebook</span>
+			</a>
+		</div>
+		{{- end }}
 		{{- with .Site.Params.widgets.social.telegram }}
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="Telegram" rel="noopener noreferrer" href="https://t.me/{{ . }}" target="_blank">
 				<svg class="widget-social__link-icon icon-telegram" viewBox="0 0 132 110" width="24" height="24"><path fill="#ddd" d="M50 103c-4 0-3-1-5-5L34 60l88-52"/><path fill="#aaa" d="M50 103c3 0 4-1 6-3l16-16-20-12"/><path fill="#fff" d="M52 72l48 36c6 3 10 2 11-5l20-93c2-8-3-11-8-9L7 45c-8 4-8 8-1 10l29 9 69-43c3-2 6-1 4 1"/></svg>
 				<span>Telegram</span>
-			</a>
-		</div>
-		{{- end }}
-		{{- with .Site.Params.widgets.social.github }}
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/{{ . }}" target="_blank">
-				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
-				<span>GitHub</span>
 			</a>
 		</div>
 		{{- end }}
@@ -62,14 +80,6 @@
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="Google Plus" rel="noopener noreferrer" href="https://plus.google.com/{{ . }}" target="_blank">
 				<svg class="widget-social__link-icon icon-googleplus" viewBox="0 0 512 512" width="24" height="24" fill="#fff"><path d="M0 279c-2-92 66-170 156-173 43-2 83 15 115 45l-43 45C201 177 167 164 132 177c-53 19-81 81-62 136s79 85 132 64c28-11 45-38 53-64l-92 0v-60H320c0 49-4 98-34 136-60 70-162 77-228 15C22 373 2 328 0 279L0 279zM418 205h47l0 49H512v49h-47l0 49h-47v-49h-47v-49h47V205z"/></svg>
-				<span>{{ . }}</span>
-			</a>
-		</div>
-		{{- end }}
-		{{- with .Site.Params.widgets.social.email }}
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="Email" href="mailto:{{ . }}">
-				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
 				<span>{{ . }}</span>
 			</a>
 		</div>

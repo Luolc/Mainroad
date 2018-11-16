@@ -1,0 +1,10 @@
+{{ if lt now .page.Date }}To appear in
+{{ else }}In
+{{ end }}
+<em>{{ index .page.Params.booktitle .format -}}</em>
+
+{{- with .page.Params }}
+{{- if isset . "address" }}, {{ .address }}{{ end }}.
+{{ end -}}
+
+{{ if eq .format "full" }}{{ .page.Date.Format "2006" }}.{{ end }}

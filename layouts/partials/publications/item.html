@@ -1,0 +1,9 @@
+{{- partial "publications/authors.html" . }}
+
+<a href="{{ .Permalink }}">{{ .Title }}</a>.
+
+{{ partial "publications/booktitle.html" (dict "page" . "format" "abbr") }}
+
+{{ if isset .Params "links" }}
+	{{ partial "publications/links_inflate.html" (dict "page" . "format" "postfix") }}
+{{ end }}

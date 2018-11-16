@@ -1,0 +1,8 @@
+{{- $pubs := where (where $.Page.Site.RegularPages "Section" "publications") "Params.selected" true }}
+<ul>
+{{- range $pubs.ByDate.Reverse }}
+<li>
+	{{- partial "publications/item.html" . }}
+</li>
+{{- end }}
+</ul>

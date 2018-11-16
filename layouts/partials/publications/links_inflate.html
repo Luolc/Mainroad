@@ -1,0 +1,16 @@
+{{- $path := printf "publications/links_format_%s.html" .format }}
+{{- with .page }}
+	{{- $filename := .File.BaseFileName }}
+	{{- $scratch := newScratch }}
+	{{- range $k, $v := .Params.links }}
+		{{- if eq $k "arxiv" }}
+			{{- $k = "arXiv" }}
+			{{- $v = delimit (slice "https://arxiv.org/abs/" $v) "" }}
+		{{- else if in (slice "slides" "poster") $k }}
+			{{- $v = delimit (slice "/assets/research/" $filename "/" $v) "" }}
+		{{- end }}
+		{{- $scratch.SetInMap "links" (string $k) (string $v) }}
+	{{- end }}
+	{{- $links := $scratch.Get "links" -}}
+	{{- partial $path $links }}
+{{- end }}

@@ -1,0 +1,27 @@
+{{ define "main" }}
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">{{ .Title }}</h1>
+			{{ partial "publications/links_icons.html" . }}
+			<div class="pub__meta">
+				{{- partial "publications/authors.html" . }}<br>
+				{{- partial "publications/booktitle.html" (dict "page" . "format" "full") }}
+			</div>
+		</header>
+
+		{{- if .Params.thumbnail }}
+		<figure class="post__thumbnail">
+			<img src="{{ .Params.thumbnail | relURL }}" alt="{{ .Title }}">
+		</figure>
+		{{- end }}
+		{{- partial "post_toc.html" . -}}
+		<div class="content post__content clearfix">
+			{{ .Content }}
+		</div>
+	</article>
+</main>
+{{ partial "authorbox.html" . }}
+{{ partial "post_nav.html" . }}
+{{ partial "comments.html" . }}
+{{ end }}
