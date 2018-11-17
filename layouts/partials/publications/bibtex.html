@@ -1,0 +1,40 @@
+{{- if isset .Params "bib" }}
+
+{{- $authors := slice }}
+{{- range .Params.authors }}
+	{{- $tokens := split . " " }}
+	{{- $index := sub (len $tokens) 1 }}
+	{{- $last_name := index $tokens $index | strings.TrimSuffix "*" }}
+	{{- $first_name := delimit (first $index $tokens) " " }}
+	{{- $name := printf "%s, %s" $last_name $first_name }}
+	{{- $authors = $authors | append $name }}
+{{- end }}
+{{- $authors = delimit $authors " and " }}
+
+{{- $lines := slice }}
+{{- $lines = $lines | append (printf "  author = {%s}" $authors) }}
+{{- $lines = $lines | append (printf "  title = {%s}" .Title) }}
+{{- $lines = $lines | append (printf "  booktitle = {%s}" .Params.booktitle.full) }}
+{{- $lines = $lines | append (printf "  month = {%s}" (.Date.Format "January")) }}
+{{- $lines = $lines | append (printf "  year = {%s}" (.Date.Format "2006")) }}
+{{- if isset .Params "address" }}
+	{{- $lines = $lines | append (printf "  address = {%s}" .Params.address) }}
+{{- end }}
+
+{{- with .Params.bib }}
+{{- range $k, $v := . }}
+	{{- if in (slice "type" "id") $k | not }}
+		{{- $lines = $lines | append (printf "  %s = {%s}" $k $v) }}
+	{{- end }}
+{{- end }}
+
+{{- $type := "inproceedings" }}
+{{- if isset . "type" }}{{ $type = .type }}{{ end }}
+
+<h2 id="bibtex">BibTex</h2>
+<pre><code>@{{ $type -}} { {{- .id }},
+{{ delimit $lines ",\n" }}
+}
+</code></pre>
+{{- end }}
+{{- end }}

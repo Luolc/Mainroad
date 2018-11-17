@@ -11,6 +11,9 @@
 		{{- end }}
 		{{- $scratch.SetInMap "links" (string $k) (string $v) }}
 	{{- end }}
+	{{- if isset .Params "bib" }}
+		{{- $scratch.SetInMap "links" "bib" (printf "%s#bibtex" .Permalink) }}
+	{{- end }}
 	{{- $links := $scratch.Get "links" -}}
 	{{- partial $path $links }}
 {{- end }}

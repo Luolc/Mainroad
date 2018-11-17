@@ -1,6 +1,6 @@
-{{ if lt now .page.Date }}To appear in
-{{ else }}In
-{{ end }}
+{{- if lt now .page.Date }}To appear in
+{{- else }}In
+{{- end }}
 <em>{{ index .page.Params.booktitle .format -}}</em>
 
 {{- with .page.Params }}
