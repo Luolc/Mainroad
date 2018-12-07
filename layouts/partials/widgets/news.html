@@ -7,7 +7,9 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			{{- range first $news_num $news }}
-			<li class="widget__item"><b>[{{ .Date.Format "01/2006" }}]</b> {{ .Content | plainify }}</li>
+				{{ $date := .Date.Format "01/2006" }}
+				{{- if lt now .Date }}{{ $date = "Upcoming" }}{{- end }}
+				<li class="widget__item"><b>[{{ $date }}]</b> {{ .Content | plainify }}</li>
 			{{- end }}
 		</ul>
 	</div>
