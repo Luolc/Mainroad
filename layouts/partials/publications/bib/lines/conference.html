@@ -1,0 +1,22 @@
+{{/*
+	Returns part of lines specific to conference paper.
+
+	Contains booktitle, month, year and address fields.
+
+	Args:
+		- .: The page instance.
+
+	Returns:
+		A slice of lines specific to conference paper only.
+*/}}
+
+{{- $lines := slice }}
+{{- $lines = $lines | append (printf "  booktitle = {%s}" .Params.booktitle.full) }}
+{{- $lines = $lines | append (printf "  month = {%s}" (.Date.Format "January")) }}
+{{- $lines = $lines | append (printf "  year = {%s}" (.Date.Format "2006")) }}
+
+{{- if isset .Params "address" }}
+	{{- $lines = $lines | append (printf "  address = {%s}" .Params.address) }}
+{{- end }}
+
+{{- return $lines }}

@@ -1,0 +1,17 @@
+{{/*
+	Returns part of lines specific to manuscript arXiv paper.
+
+	Contains journal and year fields.
+
+	Args:
+		- .: The page instance.
+
+	Returns:
+		A slice of lines specific to conference paper only.
+*/}}
+
+{{- $lines := slice }}
+{{- $lines = $lines | append (printf "  journal = {arXiv preprint arXiv:%s}" .Params.links.arxiv) }}
+{{- $lines = $lines | append (printf "  year = {%s}" (.Date.Format "2006")) }}
+
+{{- return $lines }}

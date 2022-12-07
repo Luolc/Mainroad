@@ -1,10 +1,20 @@
-{{- if lt now .page.Date }}To appear in
-{{- else }}In
+{{/*
+	Renders the booktitle for publication page and bullet.
+
+	Args:
+		- page: The page instance.
+		- format: Either "full" or "abbr".
+*/}}
+
+{{- if eq .page.Params.bib.type "conference" }}
+	{{- if lt now .page.Date }}To appear in
+	{{- else }}In
+	{{- end }}
 {{- end }}
 <em>{{ index .page.Params.booktitle .format -}}</em>
 
 {{- with .page.Params }}
-{{- if isset . "address" }}, {{ .address }}{{ end }}.
+	{{- if isset . "address" }}, {{ .address }}{{ end }}.
 {{ end -}}
 
 {{ if eq .format "full" }}{{ .page.Date.Format "2006" }}.{{ end }}

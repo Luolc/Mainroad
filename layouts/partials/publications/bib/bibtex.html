@@ -1,5 +1,11 @@
-{{- if isset .Params "bib" }}
+{{/*
+	Renders the BibTex section in a publication page.
 
+	Args:
+		- .: The page instance.
+*/}}
+
+{{/* Formats the author field. */}}
 {{- $authors := slice }}
 {{- range .Params.authors }}
 	{{- $tokens := split . " " }}
@@ -11,30 +17,28 @@
 {{- end }}
 {{- $authors = delimit $authors " and " }}
 
+{{/* Adds author and title fields. */}}
 {{- $lines := slice }}
 {{- $lines = $lines | append (printf "  author = {%s}" $authors) }}
 {{- $lines = $lines | append (printf "  title = {%s}" .Title) }}
-{{- $lines = $lines | append (printf "  booktitle = {%s}" .Params.booktitle.full) }}
-{{- $lines = $lines | append (printf "  month = {%s}" (.Date.Format "January")) }}
-{{- $lines = $lines | append (printf "  year = {%s}" (.Date.Format "2006")) }}
-{{- if isset .Params "address" }}
-	{{- $lines = $lines | append (printf "  address = {%s}" .Params.address) }}
+
+{{/* Concats bib type specific fields. */}}
+{{- with partial (printf "publications/bib/lines/%s.html" .Params.bib.type) . }}
+	{{- $lines = $lines | append . }}
 {{- end }}
 
-{{- with .Params.bib }}
-{{- range $k, $v := . }}
+{{/* Concats additional bib fields. */}}
+{{- range $k, $v := .Params.bib }}
 	{{- if in (slice "type" "id") $k | not }}
 		{{- $lines = $lines | append (printf "  %s = {%s}" $k $v) }}
 	{{- end }}
 {{- end }}
 
-{{- $type := "inproceedings" }}
-{{- if isset . "type" }}{{ $type = .type }}{{ end }}
-
+{{- with .Params.bib }}
+	{{- $bib_type := index (dict "conference" "inproceedings" "arxiv" "article") .type }}
 <h2 id="bibtex">BibTex</h2>
-<pre><code>@{{ $type -}} { {{- .id }},
+<pre><code>@{{ $bib_type -}} { {{- .id }},
 {{ delimit $lines ",\n" }}
 }
 </code></pre>
-{{- end }}
 {{- end }}
