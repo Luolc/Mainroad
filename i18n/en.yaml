@@ -53,9 +53,17 @@
 - id: recent_title
   translation: "Recent Posts"
 
+# Recent News widget
+- id: news_title
+  translation: "News"
+
+# Profile widget
+- id: profile_title
+  translation: "Profile"
+
 # Social widget
 - id: social_title
-  translation: "Social"
+  translation: "Contact"
 
 # Tags List widget
 - id: tags_title
@@ -64,7 +72,7 @@
 # Footer
 - id: footer_credits
   translation:
-    "Generated with <a href=\"https://gohugo.io/\" rel=\"nofollow noopener\" target=\"_blank\">Hugo</a> and \
+    "Generated with <a href=\"https://gohugo.io/\" rel=\"nofollow noopener\" target=\"_blank\">Hugo</a> based on \
     <a href=\"https://github.com/Vimux/Mainroad/\" rel=\"nofollow noopener\" target=\"_blank\">Mainroad</a> theme."
 
 # 404
