@@ -2,6 +2,30 @@
 <div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">{{ T "social_title" }}</h4>
 	<div class="widget-social__content widget__content">
+		{{- with .Site.Params.widgets.social.email }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:{{ . }}">
+				{{ partial "svg/email.svg" (dict "class" "widget-social__link-icon") }}
+				<span>{{ . }}</span>
+			</a>
+		</div>
+		{{- end }}
+		{{- with .Site.Params.widgets.social.google_scholar }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Google Scholar" href="https://scholar.google.com/citations?user={{ . }}&hl=en-US">
+				{{ partial "svg/scholar.svg" (dict "class" "widget-social__link-icon") }}
+				<span>Google Scholar</span>
+			</a>
+		</div>
+		{{- end }}
+		{{- with .Site.Params.widgets.social.github }}
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/{{ . }}" target="_blank">
+				{{ partial "svg/github.svg" (dict "class" "widget-social__link-icon") }}
+				<span>GitHub</span>
+			</a>
+		</div>
+		{{- end }}
 		{{- with .Site.Params.widgets.social.facebook }}
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="Facebook" rel="noopener noreferrer" href="https://facebook.com/{{ . }}" target="_blank">
@@ -42,14 +66,6 @@
 			</a>
 		</div>
 		{{- end }}
-		{{- with .Site.Params.widgets.social.github }}
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/{{ . }}" target="_blank">
-				{{ partial "svg/github.svg" (dict "class" "widget-social__link-icon") }}
-				<span>GitHub</span>
-			</a>
-		</div>
-		{{- end }}
 		{{- with .Site.Params.widgets.social.gitlab }}
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="GitLab" rel="noopener noreferrer" href="https://gitlab.com/{{ . }}" target="_blank">
@@ -63,14 +79,6 @@
 			<a class="widget-social__link widget__link btn" title="Bitbucket" rel="noopener noreferrer" href="https://bitbucket.org/{{ . }}" target="_blank">
 				{{ partial "svg/bitbucket.svg" (dict "class" "widget-social__link-icon") }}
 				<span>Bitbucket</span>
-			</a>
-		</div>
-		{{- end }}
-		{{- with .Site.Params.widgets.social.email }}
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="Email" href="mailto:{{ . }}">
-				{{ partial "svg/email.svg" (dict "class" "widget-social__link-icon") }}
-				<span>{{ . }}</span>
 			</a>
 		</div>
 		{{- end }}

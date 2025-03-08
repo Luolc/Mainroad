@@ -1,0 +1,6 @@
+{{- range $i, $author := .Params.authors }}
+{{- if ne $i 0 }}, {{ end -}}
+{{- if hasPrefix $author $.Site.Author.name }}<b>{{ $author -}}</b>
+{{- else }}{{ $author -}}
+{{ end -}}
+{{ end -}}.

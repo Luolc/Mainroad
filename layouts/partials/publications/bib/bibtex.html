@@ -1,0 +1,44 @@
+{{/*
+	Renders the BibTex section in a publication page.
+
+	Args:
+		- .: The page instance.
+*/}}
+
+{{/* Formats the author field. */}}
+{{- $authors := slice }}
+{{- range .Params.authors }}
+	{{- $tokens := split . " " }}
+	{{- $index := sub (len $tokens) 1 }}
+	{{- $last_name := index $tokens $index | strings.TrimSuffix "*" }}
+	{{- $first_name := delimit (first $index $tokens) " " }}
+	{{- $name := printf "%s, %s" $last_name $first_name }}
+	{{- $authors = $authors | append $name }}
+{{- end }}
+{{- $authors = delimit $authors " and " }}
+
+{{/* Adds author and title fields. */}}
+{{- $lines := slice }}
+{{- $lines = $lines | append (printf "  author = {%s}" $authors) }}
+{{- $lines = $lines | append (printf "  title = {%s}" .Title) }}
+
+{{/* Concats bib type specific fields. */}}
+{{- with partial (printf "publications/bib/lines/%s.html" .Params.bib.type) . }}
+	{{- $lines = $lines | append . }}
+{{- end }}
+
+{{/* Concats additional bib fields. */}}
+{{- range $k, $v := .Params.bib }}
+	{{- if in (slice "type" "id") $k | not }}
+		{{- $lines = $lines | append (printf "  %s = {%s}" $k $v) }}
+	{{- end }}
+{{- end }}
+
+{{- with .Params.bib }}
+	{{- $bib_type := index (dict "conference" "inproceedings" "arxiv" "article") .type }}
+<h2 id="bibtex">BibTex</h2>
+<pre><code>@{{ $bib_type -}} { {{- .id }},
+{{ delimit $lines ",\n" }}
+}
+</code></pre>
+{{- end }}

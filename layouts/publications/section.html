@@ -1,0 +1,18 @@
+{{ define "main" }}
+<main class="main list" role="main">
+	<div class="content main__content clearfix">
+		{{- .Content }}
+
+		{{- range .Paginator.Pages.GroupByDate "2006" }}
+		<h2>{{ .Key }}</h2>
+		<ul>
+			{{- range .Pages }}
+			<li>
+				{{- partial "publications/item.html" . }}
+			</li>
+			{{- end }}
+		</ul>
+		{{- end }}
+	</div>
+</main>
+{{ end }}
