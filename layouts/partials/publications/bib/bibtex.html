@@ -8,12 +8,17 @@
 {{/* Formats the author field. */}}
 {{- $authors := slice }}
 {{- range .Params.authors }}
-	{{- $tokens := split . " " }}
-	{{- $index := sub (len $tokens) 1 }}
-	{{- $last_name := index $tokens $index | strings.TrimSuffix "*" }}
-	{{- $first_name := delimit (first $index $tokens) " " }}
-	{{- $name := printf "%s, %s" $last_name $first_name }}
-	{{- $authors = $authors | append $name }}
+	{{- if and (hasPrefix . "{") (hasSuffix . "}") }}
+		{{- $name := . }}
+		{{- $authors = $authors | append $name }}
+	{{- else }}
+		{{- $tokens := split . " " }}
+		{{- $index := sub (len $tokens) 1 }}
+		{{- $last_name := index $tokens $index | strings.TrimSuffix "*" }}
+		{{- $first_name := delimit (first $index $tokens) " " }}
+		{{- $name := printf "%s, %s" $last_name $first_name }}
+		{{- $authors = $authors | append $name }}
+	{{- end }}
 {{- end }}
 {{- $authors = delimit $authors " and " }}
 
